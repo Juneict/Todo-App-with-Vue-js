@@ -1,0 +1,21 @@
+body{
+    background-color: rgb(41, 40, 40);
+    margin: 0;
+    padding: 0;
+}
+.check{
+    float: right;
+}
+.checked{
+    text-decoration: line-through;
+}
+#cursorBtn{
+    cursor: pointer;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To Do App</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="container" id="app">
+      <div class="col-md-6 mt-3">
+        <div class="row">
+          <div class="card">
+            <div class="card-header text-center"><h4>Todo List</h4></div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-10">
+                  <input v-model="todo" id="inputTag"
+                    type="text"
+                    placeholder="Add todo list"
+                    class="form-control"
+                  />
+                </div>
+                <div class="col-sm-2">
+                  <button @click="addTodo()" class="btn btn-success"><i class="fa-solid fa-circle-plus"></i></button>
+                </div>
+              </div>
+              <ul class="list-group mt-3">
+                <li v-for="(value,index) in todos"class="list-group-item" :class="{checked:value.status}">{{value.text}}
+                    <span class="check"><input @click="edit(index)" type="checkbox"> 
+                    <span @click="del(index)" id="cursorBtn" class="text-danger p-2"><i class="fa-solid fa-trash"></i></span></span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.8"></script>
+    <script src="https://kit.fontawesome.com/a2bd4cae4b.js" crossorigin="anonymous"></script>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                todo:"",
+                todos:[
+               
+                ]
+            },
+            methods:{
+                addTodo:function(){
+                  if(this.todo===''){
+                    return
+                  }else{
+                    this.todo;
+                    this.todos.push({"text":this.todo,"status":false});
+                    this.todo = ""; 
+                  }           
+                },
+                edit:function(index){
+                  if(this.todos[index].status == false){
+                    this.todos[index].status = true;
+                  }else{
+                    this.todos[index].status = false;
+                  }
+                },
+                del:function(index){
+                  this.todos.splice(index);
+                }
+            }
+        })
+    </script>
+  </body>
+</html>
